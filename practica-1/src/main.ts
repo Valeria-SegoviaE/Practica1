@@ -28,6 +28,18 @@ async function runApp() {
   console.log('\n=== VALOR TOTAL DEL INVENTARIO ===');
   console.log(`Valor total del inventario: $${totalInventario.toFixed(2)}`);
 
+  const reporteDescuentos = products.map(({ title, price, discountPercentage }) => {
+    const finalPrice = price - (price * (discountPercentage / 100));
+    return {
+      title,
+      originalPrice: price,
+      discountPercentage,
+      finalPrice: parseFloat(finalPrice.toFixed(2))
+    };
+  });
+
+  console.log('\n=== REPORTE DE PRECIOS CON DESCUENTO ===');
+  console.log(reporteDescuentos);
 }
 
 runApp();
