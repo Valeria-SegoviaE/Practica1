@@ -21,7 +21,6 @@ async function runApp() {
   console.log('=== PRODUCTOS CANDIDATOS PARA PROMOCIÓN ===');
   console.log(candidatos);
 
-
   const totalInventario = products.reduce((acumulado, { price, stock }) => {
     return acumulado + (price * stock);
   }, 0);
@@ -29,26 +28,6 @@ async function runApp() {
   console.log('\n=== VALOR TOTAL DEL INVENTARIO ===');
   console.log(`Valor total del inventario: $${totalInventario.toFixed(2)}`);
 
-  const reporteDescuentos = products.map(({ title, price, discountPercentage }) => {
-    const finalPrice = price - (price * (discountPercentage / 100));
-    return {
-      title,
-      originalPrice: price,
-      discountPercentage,
-      finalPrice: parseFloat(finalPrice.toFixed(2))
-    };
-  });
-
-  console.log('\n=== REPORTE DE PRECIOS CON DESCUENTO ===');
-  console.log(reporteDescuentos);
-
-  const conteoCategorias = products.reduce<Record<string, number>>((acc, { category }) => {
-    acc[category] = (acc[category] || 0) + 1;
-    return acc;
-  }, {});
-
-  console.log('\n=== PRODUCTOS POR CATEGORIA ===');
-  console.log(conteoCategorias);
 }
 
 runApp();
