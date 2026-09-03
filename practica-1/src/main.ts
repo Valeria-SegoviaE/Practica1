@@ -40,6 +40,15 @@ async function runApp() {
 
   console.log('\n=== REPORTE DE PRECIOS CON DESCUENTO ===');
   console.log(reporteDescuentos);
+
+  const conteoCategorias = products.reduce<Record<string, number>>((acc, { category }) => {
+    acc[category] = (acc[category] || 0) + 1;
+    return acc;
+  }, {});
+
+  console.log('\n=== PRODUCTOS POR CATEGORIA ===');
+  console.log(conteoCategorias);
 }
+
 
 runApp();
